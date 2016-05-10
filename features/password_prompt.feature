@@ -11,7 +11,7 @@ Feature: Password in call
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "1,4,6"
-    Then the output should match:
+    Then it should pass with:
       """
       f b r
       """
