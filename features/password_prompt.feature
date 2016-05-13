@@ -36,3 +36,10 @@ Feature: password in call
   Scenario: range
 
   Scenario: subset
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type "1,2,3,4,5,6"
+    Then it should fail with:
+      """
+      Indices weren't a subset.
+      """
