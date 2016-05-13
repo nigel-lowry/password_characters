@@ -17,6 +17,13 @@ Feature: password in call
       """
 
   Scenario: duplicate indices
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type "1,1"
+    Then it should fail with:
+      """
+      Indices weren't unique.
+      """
 
   Scenario: unsorted
 
