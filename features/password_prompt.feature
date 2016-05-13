@@ -34,6 +34,13 @@ Feature: password in call
       """
 
   Scenario: range
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type "5,7"
+    Then it should fail with:
+      """
+      Indices were out of bounds.
+      """
 
   Scenario: subset
     When I run `password_characters` interactively
