@@ -1,4 +1,3 @@
-@announce
 Feature: password in call
   Scenario: All in command-line arguments
     When I run `password_characters foobar 1,4,6`
@@ -26,6 +25,13 @@ Feature: password in call
       """
 
   Scenario: unsorted
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type "2,1"
+    Then it should fail with:
+      """
+      Indices weren't sorted.
+      """
 
   Scenario: range
 
