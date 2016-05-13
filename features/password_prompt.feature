@@ -15,3 +15,11 @@ Feature: Password in call
       """
       f b r
       """
+
+  Scenario: duplicate indices
+
+  Scenario: unsorted
+
+  Scenario: range
+
+  Scenario: subset
