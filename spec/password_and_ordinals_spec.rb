@@ -26,6 +26,12 @@ RSpec.describe PasswordAndOrdinals do
       }.to raise_error(ArgumentError).with_message('[1] only asks for one character')
     end
 
+    it 'raises error when not asking for any characters' do
+      expect {
+        PasswordAndOrdinals.new('secret', [])
+      }.to raise_error(ArgumentError).with_message('[] does not ask for any characters')
+    end
+
     describe 'bounds' do
       context 'below' do
         it 'raises error' do
