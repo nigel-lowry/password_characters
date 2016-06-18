@@ -8,7 +8,7 @@ RSpec.describe PasswordAndOrdinals do
   end
 
   describe 'construction' do
-    it 'raises error when not in ascending order' do
+    it 'raises error when in descending order' do
       expect {
         PasswordAndOrdinals.new('secret', [2, 1])
       }.to raise_error(ArgumentError).with_message('[2, 1] is not in ascending order')
