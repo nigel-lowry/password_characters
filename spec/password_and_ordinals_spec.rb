@@ -15,7 +15,7 @@ RSpec.describe PasswordAndOrdinals do
 
   describe 'duplicates' do
     context 'one ordinal duplicated' do
-      it 'raises error when have duplicates' do
+      it 'raises error' do
         expect {
           PasswordAndOrdinals.new('secret', [1, 1])
         }.to raise_error(ArgumentError).with_message('1 duplicated in [1, 1]')
@@ -23,7 +23,7 @@ RSpec.describe PasswordAndOrdinals do
     end
 
     context 'two ordinals duplicated' do
-      it 'raises error when have duplicates' do
+      it 'raises error' do
         expect {
           PasswordAndOrdinals.new('secret', [1, 1, 2, 2])
         }.to raise_error(ArgumentError).with_message('1 and 2 duplicated in [1, 1, 2, 2]')
@@ -31,7 +31,7 @@ RSpec.describe PasswordAndOrdinals do
     end
 
     context 'three ordinals duplicated' do
-      it 'raises error when have duplicates' do
+      it 'raises error' do
         expect {
           PasswordAndOrdinals.new('secret', [1, 1, 2, 2, 3, 3])
         }.to raise_error(ArgumentError).with_message('1, 2, and 3 duplicated in [1, 1, 2, 2, 3, 3]')
