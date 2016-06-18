@@ -24,6 +24,15 @@ Feature: password in call
       [1, 6, 4] is not in ascending order
       """
 
+  Scenario: Ordinals in descending order
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type "2,1"
+    Then it should fail with:
+      """
+      [2, 1] is not in ascending order
+      """
+
   Scenario: No ordinals
     When I run `password_characters` interactively
     And I type "foobar"
@@ -49,15 +58,6 @@ Feature: password in call
     Then it should fail with:
       """
       1 duplicated in [1, 1]
-      """
-
-  Scenario: Ordinals in descending order
-    When I run `password_characters` interactively
-    And I type "foobar"
-    And I type "2,1"
-    Then it should fail with:
-      """
-      [2, 1] is not in ascending order
       """
 
   Scenario: Bounds of password
