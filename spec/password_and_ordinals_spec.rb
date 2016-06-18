@@ -14,6 +14,12 @@ RSpec.describe PasswordAndOrdinals do
       }.to raise_error(ArgumentError).with_message('[2, 1] is not in ascending order')
     end
 
+    it 'raises error when in no order' do
+      expect {
+        PasswordAndOrdinals.new('secret', [2, 1, 3])
+      }.to raise_error(ArgumentError).with_message('[2, 1, 3] is not in ascending order')
+    end
+
     it 'raises error when only asking for one character' do
       expect {
         PasswordAndOrdinals.new('secret', [1])
