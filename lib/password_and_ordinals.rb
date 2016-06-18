@@ -14,7 +14,7 @@ class PasswordAndOrdinals
   end
 
   def characters
-    @indices.map { |index| @password_array[index] }
+    @indices.map { |i| @password_array[i] }
   end
 
   private
