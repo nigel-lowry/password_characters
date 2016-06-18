@@ -1,7 +1,7 @@
 require 'set'
+
 require 'active_support'
 require 'active_support/core_ext/object'
-require 'active_support/core_ext/string'
 
 class PasswordAndOrdinals
   def initialize(password, ordinals)
