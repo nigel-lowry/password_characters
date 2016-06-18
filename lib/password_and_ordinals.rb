@@ -3,12 +3,15 @@ require 'active_support/all'
 
 class PasswordAndOrdinals
   def initialize(password, ordinals)
+    raise(ArgumentError, "#{ordinals} does not ask for any characters") if ordinals.empty?
+    raise(ArgumentError, "#{ordinals} only asks for one character") if ordinals.one?
+
     raise(ArgumentError, "#{ordinals} is not in ascending order") unless sorted?(ordinals)
+
     raise(ArgumentError, "#{ordinals.uniq.to_sentence} duplicated in #{ordinals}") unless uniq?(ordinals)
     raise(ArgumentError, "#{ordinals} would reveal entire password") unless ordinals.size < password.size
+
     raise(ArgumentError, "#{ordinals_out_of_bounds(password, ordinals).to_sentence} out of bounds") unless ordinals.all? { |i| i.in? ordinal_range(password) }
-    raise(ArgumentError, "#{ordinals} only asks for one character") if ordinals.one?
-    raise(ArgumentError, "#{ordinals} does not ask for any characters") if ordinals.empty?
 
     @password_array = password.chars
     @indices = indices ordinals
