@@ -35,7 +35,7 @@ class PasswordAndOrdinals
     1..password.length
   end
 
-  def indices character_ordinals
-    character_ordinals.map { |n| n - 1 }
+  def indices ordinals
+    ordinals.map { |n| n - 1 }
   end
 end
