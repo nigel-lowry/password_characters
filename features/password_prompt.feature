@@ -15,6 +15,15 @@ Feature: password in call
       f b r
       """
 
+  Scenario: no indices
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type ""
+    Then it should fail with:
+      """
+      [] does not ask for any characters
+      """
+
   Scenario: duplicate indices
     When I run `password_characters` interactively
     And I type "foobar"
