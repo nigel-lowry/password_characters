@@ -1,12 +1,12 @@
 Feature: password in call
-  Scenario: All in command-line arguments
+  Scenario: Pass in password and ordinals as command-line arguments
     When I run `password_characters foobar 1,4,6`
     Then it should pass with:
       """
       f b r
       """
 
-  Scenario: interactive
+  Scenario: Interactive session
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "1,4,6"
@@ -15,7 +15,7 @@ Feature: password in call
       f b r
       """
 
-  Scenario: out of order
+  Scenario: Ordinals out of order
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "1,6,4"
@@ -24,7 +24,7 @@ Feature: password in call
       [1, 6, 4] is not in ascending order
       """
 
-  Scenario: no indices
+  Scenario: No ordinals
     When I run `password_characters` interactively
     And I type "foobar"
     And I type ""
@@ -33,7 +33,7 @@ Feature: password in call
       [] does not ask for any characters
       """
 
-  Scenario: one index
+  Scenario: One ordinal
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "1"
@@ -42,7 +42,7 @@ Feature: password in call
       [1] only asks for one character
       """
 
-  Scenario: duplicate indices
+  Scenario: Duplicate ordinals
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "1,1"
@@ -51,7 +51,7 @@ Feature: password in call
       1 duplicated in [1, 1]
       """
 
-  Scenario: unsorted
+  Scenario: Ordinals in descending order
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "2,1"
@@ -60,7 +60,7 @@ Feature: password in call
       [2, 1] is not in ascending order
       """
 
-  Scenario: range
+  Scenario: Bounds of password
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "5,7"
@@ -69,7 +69,7 @@ Feature: password in call
       7 out of bounds
       """
 
-  Scenario: subset
+  Scenario: Subset
     When I run `password_characters` interactively
     And I type "foobar"
     And I type "1,2,3,4,5,6"
