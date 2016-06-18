@@ -23,12 +23,12 @@ class PasswordAndOrdinals
 
   private
 
-  def uniq?(a)
-    a.uniq == a
-  end
-
   def sorted?(a)
     a.sort == a
+  end
+
+  def uniq?(a)
+    a.uniq == a
   end
 
   def ordinals_out_of_bounds(password, ordinals)
