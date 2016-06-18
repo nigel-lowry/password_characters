@@ -39,7 +39,7 @@ Feature: password in call
     And I type "5,7"
     Then it should fail with:
       """
-      7 out of bounds.
+      7 out of bounds
       """
 
   Scenario: subset
