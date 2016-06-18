@@ -31,6 +31,6 @@ class PasswordAndOrdinals
   end
 
   def indices character_ordinals
-    character_ordinals.map { |n| n.to_i - 1 }
+    character_ordinals.map { |n| n - 1 }
   end
 end
