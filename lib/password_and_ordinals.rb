@@ -9,12 +9,12 @@ class PasswordAndOrdinals
     raise(ArgumentError, "#{ordinals_out_of_bounds(password, character_ordinals).to_sentence} out of bounds") unless character_ordinals.all? { |i| i.in? ordinal_range(password) }
     raise(ArgumentError, "#{character_ordinals} only asks for one character") if character_ordinals.one?
 
-    @password = password
+    @password_array = password.chars
     @indices = indices character_ordinals
   end
 
   def characters
-    @indices.map { |index| @password[index] }
+    @indices.map { |index| @password_array[index] }
   end
 
   private
