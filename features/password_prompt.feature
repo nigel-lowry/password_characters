@@ -15,6 +15,15 @@ Feature: password in call
       f b r
       """
 
+  Scenario: out of order
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type "1,6,4"
+    Then it should fail with:
+      """
+      [1, 6, 4] is not in ascending order
+      """
+
   Scenario: no indices
     When I run `password_characters` interactively
     And I type "foobar"
