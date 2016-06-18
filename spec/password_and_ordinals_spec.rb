@@ -13,6 +13,12 @@ RSpec.describe PasswordAndOrdinals do
     }.to raise_error(ArgumentError).with_message('[2, 1] is not in ascending order')
   end
 
+  it 'raises error when only asking for one character' do
+    expect {
+      PasswordAndOrdinals.new('secret', [1])
+    }.to raise_error(ArgumentError).with_message('[1] only asks for one character')
+  end
+
   describe 'bounds' do
     context 'below' do
       it 'raises error' do
@@ -51,15 +57,15 @@ RSpec.describe PasswordAndOrdinals do
     context 'asking for whole password' do
       it 'raises error' do
         expect {
-          PasswordAndOrdinals.new('ab', [1, 2])
-        }.to raise_error(ArgumentError).with_message('[1, 2] would reveal entire password')
+          PasswordAndOrdinals.new('abc', [1, 2, 3])
+        }.to raise_error(ArgumentError).with_message('[1, 2, 3] would reveal entire password')
       end
     end
 
     context 'asking for proper subset' do
-      subject { PasswordAndOrdinals.new('ab', [1]).characters }
+      subject { PasswordAndOrdinals.new('abc', [1, 2]).characters }
 
-      it { should eq(['a']) }
+      it { should eq(%w(a b)) }
     end
   end
 
