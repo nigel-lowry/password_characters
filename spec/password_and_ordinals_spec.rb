@@ -7,6 +7,12 @@ RSpec.describe PasswordAndOrdinals do
     it { should eq(%w(s e)) }
   end
 
+  it 'raises error when not in ascending order' do
+    expect {
+      PasswordAndOrdinals.new('secret', [2, 1])
+    }.to raise_error(ArgumentError).with_message('[2, 1] is not in ascending order')
+  end
+
   describe 'bounds' do
     context 'below' do
       it 'raises error' do
@@ -39,12 +45,6 @@ RSpec.describe PasswordAndOrdinals do
         }.to raise_error(ArgumentError).with_message('7, 8, and 9 out of bounds')
       end
     end
-  end
-
-  it 'raises error when not in ascending order' do
-    expect {
-      PasswordAndOrdinals.new('secret', [2, 1])
-    }.to raise_error(ArgumentError).with_message('[2, 1] is not in ascending order')
   end
 
   describe 'subset' do
