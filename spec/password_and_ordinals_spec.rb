@@ -10,6 +10,6 @@ RSpec.describe PasswordAndOrdinals do
   it 'raises error when not in ascending order' do
     expect {
       PasswordAndOrdinals.new('secret', [3, 2, 1])
-    }.to raise_error '[3, 2, 1] is not in ascending order'
+    }.to raise_error(ArgumentError).with_message('[3, 2, 1] is not in ascending order')
   end
 end
