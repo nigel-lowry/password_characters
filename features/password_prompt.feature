@@ -21,7 +21,7 @@ Feature: password in call
     And I type "1,1"
     Then it should fail with:
       """
-      Indices weren't unique.
+      1 duplicated in [1, 1]
       """
 
   Scenario: unsorted
@@ -30,7 +30,7 @@ Feature: password in call
     And I type "2,1"
     Then it should fail with:
       """
-      Indices weren't sorted.
+      [2, 1] is not in ascending order
       """
 
   Scenario: range
@@ -39,7 +39,7 @@ Feature: password in call
     And I type "5,7"
     Then it should fail with:
       """
-      Indices were out of bounds.
+      7 out of bounds.
       """
 
   Scenario: subset
@@ -48,5 +48,5 @@ Feature: password in call
     And I type "1,2,3,4,5,6"
     Then it should fail with:
       """
-      Indices weren't a subset.
+      [1, 2, 3, 4, 5, 6] would reveal entire password
       """
