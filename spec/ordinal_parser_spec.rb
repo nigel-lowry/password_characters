@@ -8,6 +8,12 @@ RSpec.describe OrdinalParser do
       end
     end
 
+    context 'with ordinal letters' do
+      it 'can extract the number' do
+        expect(OrdinalParser.new('4th letter').ordinal).to eq(4)
+      end
+    end
+
     context 'with character number' do
       it 'can extract the number' do
         expect(OrdinalParser.new('Character 5').ordinal).to eq(5)
