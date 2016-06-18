@@ -3,7 +3,7 @@ require 'set'
 class PasswordAndOrdinals
   def initialize password, character_ordinals
     abort "Indices weren't unique." unless uniq?(character_ordinals)
-    abort "Indices weren't sorted." unless sorted?(character_ordinals)
+    raise "#{character_ordinals} is not in ascending order" unless sorted?(character_ordinals)
 
     @password = password
     @indices = indices character_ordinals
