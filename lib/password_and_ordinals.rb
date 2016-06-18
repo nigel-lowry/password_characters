@@ -11,7 +11,7 @@ class PasswordAndOrdinals
     raise(ArgumentError, "#{ordinals} is not in ascending order") unless sorted?(ordinals)
 
     raise(ArgumentError, "#{ordinals.uniq.to_sentence} duplicated in #{ordinals}") unless uniq?(ordinals)
-    raise(ArgumentError, "#{ordinals} would reveal entire password") unless ordinals.size < password.size
+    raise(ArgumentError, "#{ordinals} would reveal entire password") unless ordinals.size < password.size # needs to come after checking duplicates
 
     raise(ArgumentError, "#{ordinals_out_of_bounds(password, ordinals).to_sentence} out of bounds") unless ordinals.all? { |i| i.in? ordinal_range(password) }
 
