@@ -2,7 +2,7 @@ require 'set'
 require 'active_support/all'
 
 class PasswordAndOrdinals
-  def initialize password, ordinals
+  def initialize(password, ordinals)
     raise(ArgumentError, "#{ordinals} is not in ascending order") unless sorted?(ordinals)
     raise(ArgumentError, "#{ordinals.uniq.to_sentence} duplicated in #{ordinals}") unless uniq?(ordinals)
     raise(ArgumentError, "#{ordinals} would reveal entire password") unless ordinals.size < password.size
@@ -19,23 +19,23 @@ class PasswordAndOrdinals
 
   private
 
-  def uniq? a
+  def uniq?(a)
     a.uniq == a
   end
 
-  def sorted? a
+  def sorted?(a)
     a.sort == a
   end
 
-  def ordinals_out_of_bounds password, ordinals
+  def ordinals_out_of_bounds(password, ordinals)
     ordinals.reject { |i| i.in? ordinal_range(password) }
   end
 
-  def ordinal_range password
+  def ordinal_range(password)
     1..password.length
   end
 
-  def indices ordinals
+  def indices(ordinals)
     ordinals.map { |n| n - 1 }
   end
 end
