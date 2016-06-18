@@ -9,7 +9,7 @@ class PasswordAndOrdinals
     @password = password
     @indices = indices character_ordinals
 
-    abort "Indices weren't a subset" unless subset?
+    raise(ArgumentError, "#{character_ordinals} would reveal entire password") unless subset?
     abort 'Indices were out of bounds' unless in_bounds?
   end
 

@@ -13,6 +13,23 @@ RSpec.describe PasswordAndOrdinals do
     }.to raise_error(ArgumentError).with_message('[2, 1] is not in ascending order')
   end
 
+  describe 'subset' do
+
+    context 'asking for whole password' do
+      it 'raises error' do
+        expect {
+          PasswordAndOrdinals.new('ab', [1, 2])
+        }.to raise_error(ArgumentError).with_message('[1, 2] would reveal entire password')
+      end
+    end
+
+    context 'asking for proper subset' do
+      subject { PasswordAndOrdinals.new('ab', [1]).characters }
+
+      it { should eq(['a']) }
+    end
+  end
+
   describe 'duplicates' do
     context 'one ordinal duplicated' do
       it 'raises error' do
