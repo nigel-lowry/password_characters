@@ -48,7 +48,6 @@ RSpec.describe PasswordAndOrdinals do
   end
 
   describe 'subset' do
-
     context 'asking for whole password' do
       it 'raises error' do
         expect {
