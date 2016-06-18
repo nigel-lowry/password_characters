@@ -1,4 +1,9 @@
 Feature: password in call
+
+  Commandline application for getting characters at specified position
+  in a password, as is often asked for on Web sites such as Internet
+  banking.
+
   Scenario: Pass in password and ordinals as command-line arguments
     When I run `password_characters foobar 1,4,6`
     Then it should pass with:
