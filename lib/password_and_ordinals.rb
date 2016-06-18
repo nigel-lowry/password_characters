@@ -5,11 +5,11 @@ class PasswordAndOrdinals
   def initialize password, character_ordinals
     raise(ArgumentError, "#{character_ordinals.uniq.to_sentence} duplicated in #{character_ordinals}") unless uniq?(character_ordinals)
     raise(ArgumentError, "#{character_ordinals} is not in ascending order") unless sorted?(character_ordinals)
+    raise(ArgumentError, "#{character_ordinals} would reveal entire password") unless character_ordinals.size < password.size
 
     @password = password
     @indices = indices character_ordinals
 
-    raise(ArgumentError, "#{character_ordinals} would reveal entire password") unless subset?
     abort 'Indices were out of bounds' unless in_bounds?
   end
 
@@ -25,12 +25,6 @@ class PasswordAndOrdinals
 
   def sorted? a
     a.sort == a
-  end
-
-  def subset?
-    all_indices_set = Set.new 0...@password.length
-    indices_set = Set.new @indices
-    indices_set.proper_subset? all_indices_set
   end
 
   def in_bounds?
