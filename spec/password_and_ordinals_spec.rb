@@ -12,4 +12,10 @@ RSpec.describe PasswordAndOrdinals do
       PasswordAndOrdinals.new('secret', [2, 1])
     }.to raise_error(ArgumentError).with_message('[2, 1] is not in ascending order')
   end
+
+  it 'raises error when have duplicates' do
+    expect {
+      PasswordAndOrdinals.new('secret', [1, 1])
+    }.to raise_error(ArgumentError).with_message('Ordinal 1 is duplicated')
+  end
 end

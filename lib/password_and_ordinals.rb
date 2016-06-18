@@ -1,8 +1,9 @@
 require 'set'
+require 'active_support/all'
 
 class PasswordAndOrdinals
   def initialize password, character_ordinals
-    abort "Indices weren't unique." unless uniq?(character_ordinals)
+    raise(ArgumentError, "Ordinal #{character_ordinals.uniq.to_sentence} is duplicated") unless uniq?(character_ordinals)
     raise(ArgumentError, "#{character_ordinals} is not in ascending order") unless sorted?(character_ordinals)
 
     @password = password
