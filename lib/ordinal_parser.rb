@@ -4,6 +4,6 @@ class OrdinalParser
   end
 
   def ordinal
-    @input.to_i
+    @input[/\d+/].to_i
   end
 end
