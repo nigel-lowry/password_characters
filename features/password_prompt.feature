@@ -24,6 +24,15 @@ Feature: password in call
       [] does not ask for any characters
       """
 
+  Scenario: one index
+    When I run `password_characters` interactively
+    And I type "foobar"
+    And I type "1"
+    Then it should fail with:
+      """
+      [1] only asks for one character
+      """
+
   Scenario: duplicate indices
     When I run `password_characters` interactively
     And I type "foobar"
