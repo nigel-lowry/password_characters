@@ -70,9 +70,11 @@ RSpec.describe PasswordAndOrdinals do
       end
 
       context 'asking for proper subset' do
-        subject { PasswordAndOrdinals.new('abc', [1, 2]).characters }
-
-        it { should eq(%w(a b)) }
+        it 'does not raise error' do
+          expect {
+            PasswordAndOrdinals.new('abc', [1, 2])
+          }.to_not raise_error
+        end
       end
     end
 
