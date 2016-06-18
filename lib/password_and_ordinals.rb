@@ -6,7 +6,7 @@ class PasswordAndOrdinals
     raise(ArgumentError, "#{character_ordinals.uniq.to_sentence} duplicated in #{character_ordinals}") unless uniq?(character_ordinals)
     raise(ArgumentError, "#{character_ordinals} is not in ascending order") unless sorted?(character_ordinals)
     raise(ArgumentError, "#{character_ordinals} would reveal entire password") unless character_ordinals.size < password.size
-    raise(ArgumentError, "#{ordinals_out_of_bounds(password, character_ordinals).to_sentence} out of bounds") unless character_ordinals.all? { |i| i.in?(1..password.length) }
+    raise(ArgumentError, "#{ordinals_out_of_bounds(password, character_ordinals).to_sentence} out of bounds") unless character_ordinals.all? { |i| i.in? range(password) }
 
     @password = password
     @indices = indices character_ordinals
@@ -27,7 +27,11 @@ class PasswordAndOrdinals
   end
 
   def ordinals_out_of_bounds password, ordinals
-    ordinals.reject { |i| i.in?(1..password.length) }
+    ordinals.reject { |i| i.in? range(password) }
+  end
+
+  def range password
+    1..password.length
   end
 
   def indices character_ordinals
