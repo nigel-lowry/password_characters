@@ -7,6 +7,40 @@ RSpec.describe PasswordAndOrdinals do
     it { should eq(%w(s e)) }
   end
 
+  describe 'bounds' do
+    context 'below' do
+      it 'raises error' do
+        expect {
+          PasswordAndOrdinals.new('secret', [0, 1])
+        }.to raise_error(ArgumentError).with_message('0 out of bounds')
+      end
+    end
+
+    context 'above' do
+      it 'raises error' do
+        expect {
+          PasswordAndOrdinals.new('secret', [6, 7])
+        }.to raise_error(ArgumentError).with_message('7 out of bounds')
+      end
+    end
+
+    context 'two out of bounds' do
+      it 'raises error' do
+        expect {
+          PasswordAndOrdinals.new('secret', [6, 7, 8])
+        }.to raise_error(ArgumentError).with_message('7 and 8 out of bounds')
+      end
+    end
+
+    context 'three out of bounds' do
+      it 'raises error' do
+        expect {
+          PasswordAndOrdinals.new('secret', [6, 7, 8, 9])
+        }.to raise_error(ArgumentError).with_message('7, 8, and 9 out of bounds')
+      end
+    end
+  end
+
   it 'raises error when not in ascending order' do
     expect {
       PasswordAndOrdinals.new('secret', [2, 1])
