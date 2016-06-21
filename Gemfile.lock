@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    password_characters (0.1.0)
+    password_characters (0.1.1)
+      activesupport (= 4.2.6)
 
 GEM
   remote: https://rubygems.org/
@@ -65,7 +66,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport (= 4.2.6)
   aruba (= 0.14.1)
   bundler (~> 1.12)
   password_characters!
