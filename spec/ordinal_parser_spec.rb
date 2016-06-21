@@ -1,57 +1,24 @@
 require 'ordinal_parser'
 
 RSpec.describe OrdinalParser do
-  describe '.ordinal' do
-    context 'words for numbers' do
-      it 'can extract the first' do
-        expect(OrdinalParser.new('The first character').ordinal).to eq(1)
-      end
+  describe '#ordinal' do
+    specify { expect(OrdinalParser.new('the first character').ordinal).to eq(1) }
+    specify { expect(OrdinalParser.new('the second character').ordinal).to eq(2) }
+    specify { expect(OrdinalParser.new('the third character').ordinal).to eq(3) }
+    specify { expect(OrdinalParser.new('the fourth character').ordinal).to eq(4) }
 
-      context 'last character' do
-        context 'with password' do
-          it 'can extract the last' do
-            expect(OrdinalParser.new('The last character', 'foobar').ordinal).to eq(6)
-          end
-        end
+    specify { expect(OrdinalParser.new('the last character', 'simsalabim').ordinal).to eq(10) }
+    specify { expect(OrdinalParser.new('the second to last character', 'simsalabim').ordinal).to eq(9) }
+    specify { expect(OrdinalParser.new('the second from last character', 'simsalabim').ordinal).to eq(9) }
+    specify { expect(OrdinalParser.new('the third from last character', 'simsalabim').ordinal).to eq(8) }
+    specify { expect(OrdinalParser.new('the fourth from last character', 'simsalabim').ordinal).to eq(7) }
 
-        context 'without password' do
-          it 'errors' do
-            expect {
-              OrdinalParser.new('The last character').ordinal
-            }.to raise_error(ArgumentError).with_message('Need password to deal with \'The last character\'')
-          end
-        end
-      end
-    end
+    specify { expect(OrdinalParser.new('6th character').ordinal).to eq(6) }
+    specify { expect(OrdinalParser.new('The 4th character').ordinal).to eq(4) }
+    specify { expect(OrdinalParser.new('The 12th character').ordinal).to eq(12) }
+    specify { expect(OrdinalParser.new('4th letter').ordinal).to eq(4) }
 
-    context 'with ordinal characters' do
-      it 'can extract the number' do
-        expect(OrdinalParser.new('6th character').ordinal).to eq(6)
-      end
-    end
-
-    context 'wordy ordinal' do
-      it 'can extract the number' do
-        expect(OrdinalParser.new('The 4th character').ordinal).to eq(4)
-      end
-    end
-
-    context 'with ordinal letters' do
-      it 'can extract the number' do
-        expect(OrdinalParser.new('4th letter').ordinal).to eq(4)
-      end
-    end
-
-    context 'with character number' do
-      it 'can extract the number' do
-        expect(OrdinalParser.new('Character 5').ordinal).to eq(5)
-      end
-    end
-
-    context 'more than one digit' do
-      it 'can extract the number' do
-        expect(OrdinalParser.new('Character 52').ordinal).to eq(52)
-      end
-    end
+    specify { expect(OrdinalParser.new('Character 5').ordinal).to eq(5) }
+    specify { expect(OrdinalParser.new('Character 52').ordinal).to eq(52) }
   end
 end
