@@ -38,6 +38,12 @@ RSpec.describe PasswordCharacters::PasswordAndOrdinals do
       }.to raise_error(ArgumentError).with_message('["a", "b"] does not only ask for integers')
     end
 
+    it 'raises error when not asking for decimal index' do
+      expect {
+        PasswordCharacters::PasswordAndOrdinals.new('secret', [1.1, 3.9])
+      }.to raise_error(ArgumentError).with_message('[1.1, 3.9] does not only ask for integers')
+    end
+
     describe 'bounds' do
       context 'below' do
         it 'raises error' do
