@@ -3,6 +3,7 @@ PATH
   specs:
     password_characters (0.1.2)
       activesupport (~> 5.0.0.1)
+      thor
 
 GEM
   remote: https://rubygems.org/
