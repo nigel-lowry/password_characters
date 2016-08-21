@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    password_characters (0.1.1)
+    password_characters (0.1.2)
       activesupport (= 4.2.6)
 
 GEM
