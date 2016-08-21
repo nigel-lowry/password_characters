@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency 'aruba', '~> 0.14.1'
   spec.add_development_dependency 'rspec', '~> 3.5.0'
-  spec.add_runtime_dependency 'activesupport', '4.2.6'
+  spec.add_runtime_dependency 'activesupport', '~> 5.0.0.1'
 end
