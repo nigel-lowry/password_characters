@@ -11,6 +11,8 @@ module PasswordCharacters
       raise(ArgumentError, "#{ordinals} does not ask for any characters") if ordinals.empty?
       raise(ArgumentError, "#{ordinals} only asks for one character") if ordinals.one?
 
+      raise(ArgumentError, "#{ordinals} does not only ask for integers") unless ordinals.all? { |o| o.is_a? Fixnum }
+
       raise(ArgumentError, "#{ordinals} is not in ascending order") unless sorted?(ordinals)
 
       raise(ArgumentError, "#{ordinals.uniq.to_sentence} duplicated in #{ordinals}") unless uniq?(ordinals)

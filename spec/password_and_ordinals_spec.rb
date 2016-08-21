@@ -32,6 +32,12 @@ RSpec.describe PasswordCharacters::PasswordAndOrdinals do
       }.to raise_error(ArgumentError).with_message('[] does not ask for any characters')
     end
 
+    it 'raises error when not asking for character index' do
+      expect {
+        PasswordCharacters::PasswordAndOrdinals.new('secret', ['a', 'b'])
+      }.to raise_error(ArgumentError).with_message('["a", "b"] does not only ask for integers')
+    end
+
     describe 'bounds' do
       context 'below' do
         it 'raises error' do
